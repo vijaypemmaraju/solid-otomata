@@ -1,5 +1,4 @@
 import {
-  For,
   type Component,
   createSignal,
   createEffect,
@@ -7,7 +6,6 @@ import {
   Switch,
   Match,
 } from "solid-js";
-import Cell from "./Cell";
 import { Motion } from "@motionone/solid";
 import { createStore, produce } from "solid-js/store";
 import * as Tone from "tone";
