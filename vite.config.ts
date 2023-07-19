@@ -14,6 +14,7 @@ export default defineConfig({
   server: {
     port: 4567,
   },
+  base: "/solid-otomata",
   build: {
     target: "esnext",
   },
