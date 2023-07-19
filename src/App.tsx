@@ -20,7 +20,7 @@ enum Direction {
 
 const App: Component = () => {
   const [grid, setGrid] = createStore(
-    new Array(10).fill(0).map(() => new Array(10).fill(0))
+    new Array(8).fill(0).map(() => new Array(8).fill(0))
   );
 
   const [mode, setMode] = createSignal<"play" | "edit">("edit");
