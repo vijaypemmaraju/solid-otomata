@@ -28,9 +28,9 @@ let synth: Tone.Synth;
 const App: Component = () => {
   const [grid, setGrid] = createStore([
     new Array(10).fill(-1),
-    ...new Array(8)
+    ...new Array(GRID_SIZE)
       .fill(undefined)
-      .map(() => [-1, ...new Array(8).fill(0), -1]),
+      .map(() => [-1, ...new Array(GRID_SIZE).fill(0), -1]),
     new Array(10).fill(-1),
   ]);
 
@@ -39,7 +39,6 @@ const App: Component = () => {
   const [mode, setMode] = createSignal<"play" | "edit">("edit");
 
   createEffect(() => {
-    // when z is pressed, switch modes
     document.addEventListener("keydown", (e) => {
       if (e.key === "z") {
         setMode(mode() === "play" ? "edit" : "play");
@@ -187,7 +186,6 @@ const App: Component = () => {
                   }
                 } else {
                   grid[i][j] = (grid[i][j] & ~Direction.RIGHT) | Direction.LEFT;
-                  // synth.triggerAttackRelease("G4", "8n", Tone.now(),);
                 }
               }
             }
