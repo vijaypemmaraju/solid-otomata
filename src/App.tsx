@@ -111,9 +111,13 @@ const App: Component = () => {
     }
   }, 250);
 
+  const divisor = navigator.userAgent.match(/Android|iPhone|iPad|iPod/i)
+    ? 8
+    : 16;
+
   return (
-    <div class="w-[100vw] h-[100vh] flex flex-col items-center justify-center">
-      <div class="w-[100vw] h-[80vh] flex flex-col items-center justify-center">
+    <div class="w-[100vw] h-[100vh] flex flex-col items-between justify-between">
+      <div class="w-[100vw] h-[100vh] flex flex-col items-center justify-center">
         <Motion
           class="flex flex-col"
           animate={{
@@ -138,8 +142,12 @@ const App: Component = () => {
                         "bg-black": item() === 0,
                       }}
                       animate={{
-                        width: "80px",
-                        height: "80px",
+                        width: `${Math.floor(
+                          (window.innerWidth * 0.8) / divisor
+                        )}px`,
+                        height: `${Math.floor(
+                          (window.innerWidth * 0.8) / divisor
+                        )}px`,
                         opacity: item() > 0 ? 0.5 : 0.2,
                       }}
                       transition={{}}
@@ -229,12 +237,14 @@ const App: Component = () => {
         </Motion>
       </div>
       <button
-        class="btn btn-primary mt-4"
+        class="btn btn-primary fixed bottom-0 right-0 w-[100vw]"
         onClick={() => setMode(mode() === "play" ? "edit" : "play")}
       >
         {mode() === "play" ? "Edit" : "Play"}
         <div>
-          <kbd class="kbd kbd-xs">Z</kbd>
+          {!navigator.userAgent.match(/Android|iPhone|iPad|iPod/i) ? (
+            <kbd class="kbd kbd-xs">Z</kbd>
+          ) : null}
         </div>
       </button>
     </div>
